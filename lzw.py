@@ -67,15 +67,19 @@ def descompressao(entrada):
         anterior = aux  # anterior recebe o caractere atual
     return resultado
 
-entrada = open( "./dataset\\bible.txt", "r").read()
-saida = open("./resultados\\biblelzw.bin", "wb")
-comprimido = compressao(entrada)
-pickle.dump(comprimido, saida)  # escreve no arquivo binário a compressão
-# dump salva o conteúdo serializado do objeto nesse arquivo
-entrada = pickle.load(open("./resultados\\biblelzw.bin", "rb"))
-saida = open("./resultados\\decoderbiblelzw.txt", "w")
 
-descomprimido = descompressao(entrada)
-for l in descomprimido:  # grava no arquivo o resultado da descompressão
-    saida.write(l)
-saida.close()
+def LZW(file,encodefile,decodefile):
+    entrada = open( file, "r").read()
+    saida = open(encodefile, "wb")
+    comprimido = compressao(entrada)
+    pickle.dump(comprimido, saida)  # escreve no arquivo binário a compressão
+    # dump salva o conteúdo serializado do objeto nesse arquivo
+    input = pickle.load(open(encodefile, "rb"))
+    output = open(decodefile, "w")
+
+    descomprimido = descompressao(input)
+    for l in descomprimido:  # grava no arquivo o resultado da descompressão
+        output.write(l)
+    output.close()
+    saida.close()
+    

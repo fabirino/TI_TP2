@@ -481,6 +481,13 @@ def bin2float(bin_num):
 
 '''lEITURA E ESCRITA DE NOVOS FICHEIROS'''
 
+def decoderBZIP2(filename,fileout):
+    with open(fileout, 'w') as f:
+        bintoStr = str(bz2.open(filename,'r').read())[2:-1]
+        spl = bintoStr.split("\\n")
+        f.write("\n".join(spl).replace("\t"," "))
+    return
+
 def BZIP2():
     with open("./dataset\\bible.txt", 'r') as bible:
         texto1 = bible.read()
@@ -489,6 +496,7 @@ def BZIP2():
         bible_bz2.write(bytes(compress))
         bible_bz2.close()
         # print(calcula_entropia(calcula_ocorrencias(texto))) #4.34275
+    decoderBZIP2("./resultados\\bible_bz2.bin","./decompress\\decoder_bible_bz2.txt")
 
     with open("./dataset\\finance.csv" , 'r') as finance:
         texto2 = finance.read()
@@ -496,6 +504,7 @@ def BZIP2():
         finance_bz2 = open("./resultados\\finance_bz2.bin", "wb")
         finance_bz2.write(bytes(compress_finance))
         finance_bz2.close()
+    decoderBZIP2("./resultados\\finance_bz2.bin","./decompress\\decoder_finance_bz2.csv")
 
     with open("./dataset\\random.txt", 'r') as random:
         texto3 = random.read()
@@ -503,6 +512,7 @@ def BZIP2():
         random_bz2 = open("./resultados\\random_bz2.bin", 'wb')
         random_bz2.write(bytes(compress_random))
         random_bz2.close()
+    decoderBZIP2("./resultados\\random_bz2.bin","./decompress\\decoder_random_bz2.txt")
 
     with open("./dataset\\jquery-3.6.0.js", 'r') as jquery:
         texto4 = jquery.read()
@@ -510,3 +520,4 @@ def BZIP2():
         jquery_bz2 = open("./resultados\\jquery_bz2.bin", 'wb')
         jquery_bz2.write(bytes(compress_jquery))
         jquery_bz2.close()
+    decoderBZIP2("./resultados\\jquery_bz2.bin","./decompress\\decoder_jquery_bz2.js")

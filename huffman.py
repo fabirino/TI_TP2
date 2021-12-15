@@ -149,7 +149,7 @@ class HuffmanCoding:
 
     def decompress(self, input_path):
         filename, file_extension = os.path.splitext(self.path)
-        output_path = "./resultados\\decoder" + filename + "huff.txt"
+        output_path = "./decompress\\decoder" + filename + "huff.txt"
 
         with open(input_path, 'rb') as file, open(output_path, 'w') as output:
             bit_string = ""
@@ -170,12 +170,11 @@ class HuffmanCoding:
         print("Decompressed")
         return output_path
 
-path = "bible.txt"
+def huffman(path):
+    h = HuffmanCoding(path)
 
-h = HuffmanCoding(path)
+    output_path = h.compress()
+    print("Compressed file path: " + output_path)
 
-output_path = h.compress()
-print("Compressed file path: " + output_path)
-
-decom_path = h.decompress(output_path)
-print("Decompressed file path: " + decom_path)
+    decom_path = h.decompress(output_path)
+    print("Decompressed file path: " + decom_path)
