@@ -33,7 +33,7 @@ def encodeFile(infile, outfile):
 	fi.close()
 	fo = open(outfile, "wb")
 	for i in encoded:
-		fo.write(struct.pack('cc', i[0], chr(i[1])))
+		fo.write(struct.pack('ss', i[0], chr(i[1])))
 	fo.close()
 
 def decodeFile(infile, outfile):

@@ -103,7 +103,7 @@ class HuffmanCoding:
 
     def compress(self):
         filename, file_extension = os.path.splitext(self.path)
-        output_path = "./resultados\\" + filename + "huff.bin"
+        output_path = "./resultados\\" + filename + "_HUFF.bin"
 
         with open("./dataset\\" +self.path, 'r+') as file, open(output_path, 'wb') as output:
             text = file.read()
@@ -174,7 +174,7 @@ def huffman(path):
     h = HuffmanCoding(path)
 
     output_path = h.compress()
-    print("Compressed file path: " + output_path)
+    print(f"Ficheiro {output_path} comprimido com huffman codes")
 
     decom_path = h.decompress(output_path)
-    print("Decompressed file path: " + decom_path)
+    print(f"Ficheiro {output_path} comprimido com huffman codes")

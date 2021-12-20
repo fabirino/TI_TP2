@@ -25,4 +25,6 @@ def decoderPPM(data,dataout):
 
 def PPM(file,encodefile,decodefile):
     encoderPPM(file,encodefile)
+    print(f"Ficheiro {file} comprimido com PPM")
     decoderPPM(encodefile,decodefile)
+    print(f"Ficheiro {encodefile} comprimido com PPM")

@@ -405,29 +405,27 @@ def decoderBZIP2(filename,fileout):
     return
 
 def BZIP2():
-    with open("./dataset\\bible.txt", 'r') as bible:
+    with open("./dataset\\bible.txt", 'r') as bible, open("./resultados\\bible_BZ2.bin", "wb") as bible_bz2:
         texto1 = bible.read()
         compress = bz2.compress(texto1.encode('ascii'), compresslevel=9)
-        bible_bz2 = open("./resultados\\bible_bz2.bin", "wb")
         bible_bz2.write(bytes(compress))
-        bible_bz2.close()
-        # print(calcula_entropia(calcula_ocorrencias(texto))) #4.34275
+        print("Ficheiro bible.txt comprimido com BZIP")
     decoderBZIP2("./resultados\\bible_bz2.bin","./decompress\\decoder_bible_bz2.txt")
+    print("Ficheiro bible_BZ2.bin descomprimido com BZIP")
 
-    with open("./dataset\\finance.csv" , 'r') as finance:
+    with open("./dataset\\finance.csv" , 'r') as finance, open("./resultados\\finance_BZ2.bin", "wb") as finance_bz2:
         texto2 = finance.read()
         compress_finance = bz2.compress(texto2.encode('ascii'), compresslevel=9)
-        finance_bz2 = open("./resultados\\finance_bz2.bin", "wb")
         finance_bz2.write(bytes(compress_finance))
-        finance_bz2.close()
+        print("Ficheiro finance.csv comprimido com BZIP")
     decoderBZIP2("./resultados\\finance_bz2.bin","./decompress\\decoder_finance_bz2.csv")
+    print("Ficheiro finance_BZ2.bin descomprimido com BZIP")
 
-    with open("./dataset\\random.txt", 'r') as random:
+    with open("./dataset\\random.txt", 'r') as random, open("./resultados\\random_bz2.bin", 'wb') as random_bz2:
         texto3 = random.read()
         compress_random = bz2.compress(texto3.encode('ascii'), compresslevel=9)
-        random_bz2 = open("./resultados\\random_bz2.bin", 'wb')
         random_bz2.write(bytes(compress_random))
-        random_bz2.close()
+        
     decoderBZIP2("./resultados\\random_bz2.bin","./decompress\\decoder_random_bz2.txt")
 
     with open("./dataset\\jquery-3.6.0.js", 'r') as jquery:
