@@ -407,31 +407,32 @@ def decoderBZIP2(filename,fileout):
 def BZIP2():
     with open("./dataset\\bible.txt", 'r') as bible, open("./resultados\\bible_BZ2.bin", "wb") as bible_bz2:
         texto1 = bible.read()
+        print("Ficheiro \'bible.txt\' comprimido com BZIP")
         compress = bz2.compress(texto1.encode('ascii'), compresslevel=9)
         bible_bz2.write(bytes(compress))
-        print("Ficheiro bible.txt comprimido com BZIP")
+    print("Ficheiro \'bible_BZ2.bin\' descomprimido com BZIP")
     decoderBZIP2("./resultados\\bible_bz2.bin","./decompress\\decoder_bible_bz2.txt")
-    print("Ficheiro bible_BZ2.bin descomprimido com BZIP")
 
     with open("./dataset\\finance.csv" , 'r') as finance, open("./resultados\\finance_BZ2.bin", "wb") as finance_bz2:
         texto2 = finance.read()
+        print("Ficheiro \'finance.csv\' comprimido com BZIP")
         compress_finance = bz2.compress(texto2.encode('ascii'), compresslevel=9)
         finance_bz2.write(bytes(compress_finance))
-        print("Ficheiro finance.csv comprimido com BZIP")
+    print("Ficheiro \'finance_BZ2.bin\' descomprimido com BZIP")
     decoderBZIP2("./resultados\\finance_bz2.bin","./decompress\\decoder_finance_bz2.csv")
-    print("Ficheiro finance_BZ2.bin descomprimido com BZIP")
 
     with open("./dataset\\random.txt", 'r') as random, open("./resultados\\random_bz2.bin", 'wb') as random_bz2:
         texto3 = random.read()
+        print("Ficheiro \'random.txt\' comprimido com BZIP")
         compress_random = bz2.compress(texto3.encode('ascii'), compresslevel=9)
         random_bz2.write(bytes(compress_random))
-        
+    print("Ficheiro \'random_bz2.bin\' descomprimido com BZIP")
     decoderBZIP2("./resultados\\random_bz2.bin","./decompress\\decoder_random_bz2.txt")
 
-    with open("./dataset\\jquery-3.6.0.js", 'r') as jquery:
+    with open("./dataset\\jquery-3.6.0.js", 'r') as jquery, open("./resultados\\jquery_bz2.bin", 'wb') as jquery_bz2:
         texto4 = jquery.read()
+        print("Ficheiro \'jquery-3.6.0.js\' descomprimido com BZIP")
         compress_jquery =bz2.compress(texto4.encode('ascii'), compresslevel=9)
-        jquery_bz2 = open("./resultados\\jquery_bz2.bin", 'wb')
         jquery_bz2.write(bytes(compress_jquery))
-        jquery_bz2.close()
+    print("Ficheiro \'jquery_bz2.bin\' descomprimido com BZIP")
     decoderBZIP2("./resultados\\jquery_bz2.bin","./decompress\\decoder_jquery_bz2.js")

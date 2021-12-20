@@ -71,6 +71,7 @@ def descompressao(entrada):
 def LZW(file,encodefile,decodefile):
     entrada = open( file, "r").read()
     saida = open(encodefile, "wb")
+    print(f"Ficheiro \'{file}\' comprimido com PPM")
     comprimido = compressao(entrada)
     pickle.dump(comprimido, saida)  # escreve no arquivo binário a compressão
     # dump salva o conteúdo serializado do objeto nesse arquivo
@@ -80,6 +81,7 @@ def LZW(file,encodefile,decodefile):
     descomprimido = descompressao(input)
     for l in descomprimido:  # grava no arquivo o resultado da descompressão
         output.write(l)
+    print(f"Ficheiro \'{encodefile}\' descomprimido com PPM")
     output.close()
     saida.close()
     

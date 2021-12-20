@@ -173,8 +173,8 @@ class HuffmanCoding:
 def huffman(path):
     h = HuffmanCoding(path)
 
+    print(f"Ficheiro \'{output_path}\' comprimido com huffman codes")
     output_path = h.compress()
-    print(f"Ficheiro {output_path} comprimido com huffman codes")
 
+    print(f"Ficheiro \'{output_path}\' descomprimido com huffman codes")
     decom_path = h.decompress(output_path)
-    print(f"Ficheiro {output_path} comprimido com huffman codes")

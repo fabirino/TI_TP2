@@ -46,5 +46,7 @@ def decodeFile(infile, outfile):
 	fo.close()
 
 def BWT(file,encodefile,decodefile):
+    print(f"Ficheiro \'{file}\' comprimido com BWT")
     encodeFile(file, encodefile)
+    print(f"Ficheiro \'{encodefile}\' descomprimido com BWT")
     decodeFile(encodefile, decodefile)
