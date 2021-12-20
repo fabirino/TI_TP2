@@ -1,4 +1,4 @@
-import functions, lzw, huffman, ppm, rle, mtf, bwt, mtf2
+import functions, lzw, huffman, ppm, rle, mtf, bwt, mtf
 
 if __name__ == '__main__':
     # functions.BZIP2()
@@ -18,9 +18,8 @@ if __name__ == '__main__':
     # huffman.huffman("jquery-3.6.0.js")
     # huffman.huffman("random.txt")
 
-    bwt.BWT("./dataset\\bible.txt", "./resultados\\bible_BWT.bin","./decompress\\decoder_bible_BWT.txt")
+    bwt.BWT("./dataset\\bible.txt", "./resultados\\bible_BWT.bin", "./decompress\\decoder_bible_BWT.txt")
 
-    # mtf2.MVF()
 
-    #rle, mtf e nao funcionam ainda
+    #rle,  nao funcionam ainda
     

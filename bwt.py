@@ -1,4 +1,3 @@
-#https://github.com/chaitan94/knit
 import struct
 
 def encode(string):
@@ -41,12 +40,8 @@ def decodeFile(infile, outfile):
 	n = struct.unpack('i',fi.read(4))[0]
 	c = fi.read()
 	fi.close()
-	fo = open(outfile,"wb")
+	fo = open(outfile, "w")
 	fo.write(decode((n,c)))
 	fo.close()
 
-def BWT(file,encodefile,decodefile):
-    print(f"Ficheiro \'{file}\' comprimido com BWT")
-    encodeFile(file, encodefile)
-    print(f"Ficheiro \'{encodefile}\' descomprimido com BWT")
-    decodeFile(encodefile, decodefile)
+encodeFile("./dataset\\bible.txt", "./resultados\\bible_BWT.txt")
