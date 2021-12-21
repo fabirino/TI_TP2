@@ -436,3 +436,9 @@ def BZIP2():
         jquery_bz2.write(bytes(compress_jquery))
     print("Ficheiro \'jquery_bz2.bin\' descomprimido com BZIP")
     decoderBZIP2("./resultados\\jquery_bz2.bin","./decompress\\decoder_jquery_bz2.js")
+
+with open("./resultados\\randomhuff.bin","rb") as lz,open("./resultados\\randomhuff_bz2.bin", 'wb') as bzip:
+    ti = lz.read()
+    compress = bz2.compress(ti,compresslevel=9)
+    bzip.write(bytes(compress))
+    

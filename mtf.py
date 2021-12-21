@@ -30,3 +30,5 @@ def move2front_decode(infile, outfile):
 def MTF(file,encodefile,decodefile):
     move2front_encode(file, encodefile)
     move2front_decode(encodefile, decodefile)
+
+move2front_encode("./dataset\\bible.txt", "./resultados\\bible_MTF.bin")

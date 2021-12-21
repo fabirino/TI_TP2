@@ -49,5 +49,7 @@ def rle_decode(infile,outfile):
     with open(outfile, "w") as fp:
         fp.write(decode)
 
-rle_encode("./dataset\\bible.txt", "./resultados\\bible_RLE.txt")
-rle_decode("./resultados\\bible_RLE.txt", "./decompress\\decoder_bible_RLE.txt")
+#rle_encode("./resultados\\bible_BWT.txt", "./resultados\\bible_BWT_RLE.bin")
+rle_encode("./dataset\\finance.csv", "./resultados\\finance_RLE.bin")
+rle_encode("./dataset\\jquery-3.6.0.js", "./resultados\\jquery-3.6.0_RLE.bin")
+rle_encode("./dataset\\random.txt", "./resultados\\random_RLE.bin")

@@ -8,8 +8,7 @@ website: https:bhrigu.me
 
 
 class HuffmanCoding:
-    def __init__(self, path):
-        self.path = path
+    def __init__(self):
         self.heap = []
         self.codes = {}
         self.reverse_mapping = {}
@@ -101,11 +100,10 @@ class HuffmanCoding:
             b.append(int(byte, 2))
         return b
 
-    def compress(self):
-        filename, file_extension = os.path.splitext(self.path)
-        output_path = "./resultados\\" + filename + "_HUFF.bin"
+    def compress(self,infile,outfile):
+        output_path = outfile
 
-        with open("./dataset\\" +self.path, 'r+') as file, open(output_path, 'wb') as output:
+        with open(infile, 'r+') as file, open(output_path, 'wb') as output:
             text = file.read()
             text = text.rstrip()
 
@@ -147,9 +145,9 @@ class HuffmanCoding:
 
         return decoded_text
 
-    def decompress(self, input_path):
+    def decompress(self, input_path,outfile):
         filename, file_extension = os.path.splitext(self.path)
-        output_path = "./decompress\\decoder" + filename + "huff.txt"
+        output_path = outfile
 
         with open(input_path, 'rb') as file, open(output_path, 'w') as output:
             bit_string = ""
@@ -170,11 +168,10 @@ class HuffmanCoding:
         print("Decompressed")
         return output_path
 
-def huffman(path):
-    h = HuffmanCoding(path)
 
-    print(f"Ficheiro \'{output_path}\' comprimido com huffman codes")
-    output_path = h.compress()
+h = HuffmanCoding()
 
-    print(f"Ficheiro \'{output_path}\' descomprimido com huffman codes")
-    decom_path = h.decompress(output_path)
+output_path = h.compress("./dataset\\finance.txt","./dataset\\finance_HUFF.bin")
+
+#print(f"Ficheiro \'{output_path}\' descomprimido com huffman codes")
+#decom_path = h.decompress(output_path)

@@ -28,3 +28,6 @@ def PPM(file,encodefile,decodefile):
     print(f"Ficheiro \'{file}\' comprimido com PPM")
     decoderPPM(encodefile,decodefile)
     print(f"Ficheiro \'{encodefile}\' comprimido com PPM")
+
+
+encoderPPM("./resultados\\bible_BWT.txt","./resultados\\bible_BWT_PPM.bin")

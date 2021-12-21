@@ -18,7 +18,8 @@ if __name__ == '__main__':
     # huffman.huffman("jquery-3.6.0.js")
     # huffman.huffman("random.txt")
 
-    bwt.BWT("./dataset\\bible.txt", "./resultados\\bible_BWT.bin", "./decompress\\decoder_bible_BWT.txt")
+    #bwt.BWT("./dataset\\bible.txt", "./resultados\\bible_BWT.bin", "./decompress\\decoder_bible_BWT.txt")
+    mtf.move2front_encode("./dataset\\bible.txt", "./resultados\\bible_MTF.bin")
 
 
     #rle,  nao funcionam ainda

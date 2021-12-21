@@ -1,47 +1,31 @@
-import struct
+# https://stackoverflow.com/questions/21297887/performance-issues-in-burrows-wheeler-in-python
 
-def encode(string):
-	strlist = list(string)
-	cyclicSuffixArray = getCyclicSuffixArray(strlist)
-	sortedSuffixArray = sorted(cyclicSuffixArray)
-	transform = []
-	n = sortedSuffixArray.index(strlist)
-	for i in sortedSuffixArray:
-		transform.append(i[-1])
-	return (n,''.join(transform))
+def burroughs_wheeler_custom(text):
+    N = len(text)
+    text2 = text * 2
+    class K:
+        def __init__(self, i):
+            self.i = i
+        def __lt__(a, b):
+            i, j = a.i, b.i
+            for k in range(N): # use `range()` in Python 3
+                if text2[i+k] < text2[j+k]:
+                    return True
+                elif text2[i+k] > text2[j+k]:
+                    return False
+            return False # they're equal
 
-def decode(transform):
-	string = transform[1]
-	n = len(string)
-	table = [[]]*n
-	for x in range(n):
-		for y in range(n):
-			table[y] = list(string[y]) + table[y]
-		table = sorted(table)
-	return ''.join(table[transform[0]])
-
-def getCyclicSuffixArray(strlist):
-	cyclicSuffixArray = []
-	strlen = len(strlist)
-	for i in range(strlen):
-		cyclicSuffixArray.append(strlist[(strlen-i):]+strlist[:(strlen-i)])
-	return cyclicSuffixArray
+    inorder = sorted(range(N), key=K)
+    return "".join(text2[i+N-1] for i in inorder)
 
 def encodeFile(infile, outfile):
-	fi = open(infile, "rb").read()
-	bwttransform = encode(fi)
-	fo = open(outfile, "wb")
-	fo.write(struct.pack('i', bwttransform[0]))
-	fo.write(struct.pack('c'*len(bwttransform[1]), *bwttransform[1]))
-	fo.close()
-
-def decodeFile(infile, outfile):
-	fi = open(infile,"rb")
-	n = struct.unpack('i',fi.read(4))[0]
-	c = fi.read()
-	fi.close()
+	fi = open(infile, "r").read()
+	bwttransform = burroughs_wheeler_custom(fi)
 	fo = open(outfile, "w")
-	fo.write(decode((n,c)))
+	fo.write(bwttransform)
 	fo.close()
 
-encodeFile("./dataset\\bible.txt", "./resultados\\bible_BWT.txt")
+#encodeFile("./dataset\\bible.txt", "./resultados\\bible_BWT.txt")
+encodeFile("./dataset\\finance.csv", "./resultados\\finance_BWT.txt")
+# encodeFile("./dataset\\jquery-3.6.0.js", "./resultados\\jquery-3.6.0_BWT.txt")
+# encodeFile("./dataset\\random.txt", "./resultados\\random_BWT.txt")

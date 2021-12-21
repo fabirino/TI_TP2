@@ -85,3 +85,7 @@ def LZW(file,encodefile,decodefile):
     output.close()
     saida.close()
     
+entrada = open( "./dataset\\bible.txt", "r").read()
+saida = open("./resultados\\bible_LZW.bin", "wb")
+comprimido = compressao(entrada)
+pickle.dump(comprimido, saida)
