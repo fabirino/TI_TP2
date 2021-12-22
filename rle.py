@@ -49,7 +49,18 @@ def rle_decode(infile,outfile):
     with open(outfile, "w") as fp:
         fp.write(decode)
 
-#rle_encode("./resultados\\bible_BWT.txt", "./resultados\\bible_BWT_RLE.bin")
-rle_encode("./dataset\\finance.csv", "./resultados\\finance_RLE.bin")
-rle_encode("./dataset\\jquery-3.6.0.js", "./resultados\\jquery-3.6.0_RLE.bin")
-rle_encode("./dataset\\random.txt", "./resultados\\random_RLE.bin")
+
+def allRLE():
+    rle_encode("./dataset\\bible.txt", "./resultados\\bible_RLE.bin")
+    print(f"Ficheiro \'bible.txt\' comprimido com RLE")
+    rle_decode("./resultados\\bible_RLE.bin","./decompress\\decoder_bible_RLE.txt")
+    print(f"Ficheiro \'bible_RLE.bin\' descomprimido com RLE")
+
+    rle_encode("./dataset\\finance.csv", "./resultados\\finance_RLE.bin")
+    print(f"Ficheiro \'finance.csv\' comprimido com RLE")
+
+    rle_encode("./dataset\\jquery-3.6.0.js", "./resultados\\jquery-3.6.0_RLE.bin")
+    print(f"Ficheiro \'jquery-3.6.0.js\' comprimido com RLE")
+
+    rle_encode("./dataset\\random.txt", "./resultados\\random_RLE.bin")
+    print(f"Ficheiro \'random.txt\' comprimido com RLE")

@@ -25,7 +25,12 @@ def encodeFile(infile, outfile):
 	fo.write(bwttransform)
 	fo.close()
 
-#encodeFile("./dataset\\bible.txt", "./resultados\\bible_BWT.txt")
-encodeFile("./dataset\\finance.csv", "./resultados\\finance_BWT.txt")
-# encodeFile("./dataset\\jquery-3.6.0.js", "./resultados\\jquery-3.6.0_BWT.txt")
-# encodeFile("./dataset\\random.txt", "./resultados\\random_BWT.txt")
+def allBWT():
+    encodeFile("./dataset\\bible.txt", "./resultados\\bible_BWT.txt")
+    print("Ficheiro \'bible.txt\' comprimido com BWT")
+    encodeFile("./dataset\\finance.csv", "./resultados\\finance_BWT.txt")
+    print("Ficheiro \'finance.csv\' comprimido com BWT")
+    encodeFile("./dataset\\jquery-3.6.0.js", "./resultados\\jquery-3.6.0_BWT.txt")
+    print("Ficheiro \'jquery-3.6.0.js\' comprimido com BWT")
+    encodeFile("./dataset\\random.txt", "./resultados\\random_BWT.txt")
+    print("Ficheiro \'random.txt\' comprimido com BWT")

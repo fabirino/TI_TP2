@@ -27,7 +27,14 @@ def PPM(file,encodefile,decodefile):
     encoderPPM(file,encodefile)
     print(f"Ficheiro \'{file}\' comprimido com PPM")
     decoderPPM(encodefile,decodefile)
-    print(f"Ficheiro \'{encodefile}\' comprimido com PPM")
+    print(f"Ficheiro \'{encodefile}\' descomprimido com PPM")
 
 
-encoderPPM("./resultados\\bible_BWT.txt","./resultados\\bible_BWT_PPM.bin")
+def allPPM():
+    PPM("./dataset\\bible.txt","./resultados\\bible_PPM.bin","./decompress\\decoder_bible_PPM.txt")
+    PPM("./dataset\\finance.csv","./resultados\\finance_PPM.bin","./decompress\\decoder_finance_PPM.csv")
+    PPM("./dataset\\jquery-3.6.0.js","./resultados\\jquery-3.6.0_PPM.bin","./decompress\\decoder_jquery-3.6.0_PPM.js")
+    PPM("./dataset\\random.txt","./resultados\\random_PPM.bin","./decompress\\decoder_random_PPM.txt")
+
+
+# encoderPPM("./resultados\\bible_BWT.txt","./resultados\\bible_BWT_PPM.bin")

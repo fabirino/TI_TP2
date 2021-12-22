@@ -1,4 +1,4 @@
-# https://www.ti-enxame.com/pt/python/como-salvar-uma-lista-em-um-arquivo-e-le-lo-como-um-tipo-de-lista/1049890256/
+# https://titanwolf.org/Network/Articles/Article?AID=2fb527a4-b1a2-4e05-8f56-ad861e0f480e
 
 import pickle
 import string
@@ -29,6 +29,14 @@ def move2front_decode(infile, outfile):
 
 def MTF(file,encodefile,decodefile):
     move2front_encode(file, encodefile)
+    print(f"Ficheiro \'{file}\' comprimido com MTF")
     move2front_decode(encodefile, decodefile)
+    print(f"Ficheiro \'{encodefile}\' descomprimido com MTF")
 
-move2front_encode("./dataset\\bible.txt", "./resultados\\bible_MTF.bin")
+def allMTF():
+    MTF("./dataset\\bible.txt", "./resultados\\bible_MTF.bin","./decompress\\decoder_bible_MTF.txt")
+    MTF("./dataset\\finance.csv", "./resultados\\finance_MTF.bin","./decompress\\decoder_finance_MTF.txt")
+    MTF("./dataset\\jquery-3.6.0.js", "./resultados\\jquery-3.6.0_MTF.bin","./decompress\\decoder_jquery-3.6.0_MTF.txt")
+    MTF("./dataset\\random.txt", "./resultados\\random_MTF.bin","./decompress\\decoder_random_MTF.txt")
+
+# move2front_encode("./dataset\\bible.txt", "./resultados\\bible_MTF.bin")

@@ -1,5 +1,5 @@
 import heapq
-import os
+import pickle
 
 """
 author: Bhrigu Srivastava
@@ -8,7 +8,11 @@ website: https:bhrigu.me
 
 
 class HuffmanCoding:
-    def __init__(self):
+    def __init__(self,file,infile, outfile,dicfile):
+        self.dicfile = dicfile
+        self.file = file
+        self.infile = infile
+        self.outfile = outfile
         self.heap = []
         self.codes = {}
         self.reverse_mapping = {}
@@ -100,10 +104,9 @@ class HuffmanCoding:
             b.append(int(byte, 2))
         return b
 
-    def compress(self,infile,outfile):
-        output_path = outfile
+    def compress(self):
 
-        with open(infile, 'r+') as file, open(output_path, 'wb') as output:
+        with open(self.file, 'r+') as file, open(self.infile, 'wb') as output:
             text = file.read()
             text = text.rstrip()
 
@@ -117,9 +120,10 @@ class HuffmanCoding:
 
             b = self.get_byte_array(padded_encoded_text)
             output.write(bytes(b))
+            a_file = open(self.dicfile, "wb")
+            pickle.dump(self.reverse_mapping, a_file)
 
-        print("Compressed")
-        return output_path
+            a_file.close()
 
     """ functions for decompression: """
 
@@ -145,11 +149,12 @@ class HuffmanCoding:
 
         return decoded_text
 
-    def decompress(self, input_path,outfile):
-        filename, file_extension = os.path.splitext(self.path)
-        output_path = outfile
+    def decompress(self):
+        if(len(self.reverse_mapping) == 0):
+            a_file = open(self.dicfile, "rb")
+            self.reverse_mapping = pickle. load(a_file)
 
-        with open(input_path, 'rb') as file, open(output_path, 'w') as output:
+        with open(self.infile, 'rb') as file, open(self.outfile, 'w') as output:
             bit_string = ""
 
             byte = file.read(1)
@@ -165,13 +170,35 @@ class HuffmanCoding:
 
             output.write(decompressed_text)
 
-        print("Decompressed")
-        return output_path
 
+def Huffman():
+    bible = HuffmanCoding("./dataset\\bible.txt","./resultados\\bible_Huff.bin","./decompress\\decoder_bible_Huff.txt","./dicionarios\\bible_Huff.bin")
+    bible.compress()
+    print("Ficheiro \'bible.txt\' comprimido com Huffman")
+    bible.decompress()
+    print("Ficheiro \'bible_Huff.bin\' descomprimido com Huffman")
+    finance = HuffmanCoding("./dataset\\finance.csv","./resultados\\finance_Huff.bin","./decompress\\decoder_finance_Huff.txt","./dicionarios\\finance_Huff.bin")
+    finance.compress()
+    print("Ficheiro \'finance.csv\' comprimido com Huffman")
+    finance.decompress()
+    print("Ficheiro \'finance_Huff.bin\' descomprimido com Huffman")
+    jquery = HuffmanCoding("./dataset\\jquery-3.6.0.js","./resultados\\jquery-3.6.0_Huff.bin","./decompress\\decoder_jquery-3.6.0_Huff.txt","./dicionarios\\jquery-3.6.0_Huff.bin")
+    jquery.compress()
+    print("Ficheiro \'jquery-3.6.0.js\' comprimido com Huffman")
+    jquery.decompress()
+    print("Ficheiro \'jquery-3.6.0_Huff.bin\' descomprimido com Huffman")
+    random = HuffmanCoding("./dataset\\random.txt","./resultados\\random_Huff.bin","./decompress\\decoder_random_Huff.txt","./dicionarios\\random_Huff.bin")
+    random.compress()
+    print("Ficheiro \'random.txt\' comprimido com Huffman")
+    random.decompress()
+    print("Ficheiro \'random_Huff.bin\' descomprimido com Huffman")
 
-h = HuffmanCoding()
+# def Huffmanencode(file,outfile,dicfile):
+#     x = HuffmanCoding(file,outfile,"",dicfile)
+#     x.compress()
+#     print("Ficheiro \'{file}\' comprimido com Huffman")
 
-output_path = h.compress("./dataset\\finance.txt","./dataset\\finance_HUFF.bin")
-
-#print(f"Ficheiro \'{output_path}\' descomprimido com huffman codes")
-#decom_path = h.decompress(output_path)
+# def Huffmandecode(file,outfile,dicfile):
+#     x = HuffmanCoding(file,"",outfile,dicfile)
+#     x.decompress()
+#     print("Ficheiro \'{file}\' descomprimido com Huffman")

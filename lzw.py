@@ -67,6 +67,23 @@ def descompressao(entrada):
         anterior = aux  # anterior recebe o caractere atual
     return resultado
 
+def encoderFile(infile,outfile):
+    entrada = open( infile, "r").read()
+    saida = open(outfile, "wb")
+    print(f"Ficheiro \'{infile}\' comprimido com PPM")
+    comprimido = compressao(entrada)
+    pickle.dump(comprimido, saida)  # escreve no arquivo binário a compressão
+
+def decoderFile(encodefile,decodefile):
+    input = pickle.load(open(encodefile, "rb"))
+    output = open(decodefile, "w")
+
+    descomprimido = descompressao(input)
+    for l in descomprimido:  # grava no arquivo o resultado da descompressão
+        output.write(l)
+    print(f"Ficheiro \'{encodefile}\' descomprimido com PPM")
+    output.close()
+
 
 def LZW(file,encodefile,decodefile):
     entrada = open( file, "r").read()
@@ -84,8 +101,15 @@ def LZW(file,encodefile,decodefile):
     print(f"Ficheiro \'{encodefile}\' descomprimido com PPM")
     output.close()
     saida.close()
+
+
+def allLZW():
+    LZW("./dataset\\bible.txt","./resultados\\bible_LZW.bin","./decompress\\decoder_bible_LZW.txt")
+    LZW("./dataset\\finance.csv","./resultados\\finance_LZW.bin","./decompress\\decoder_finance_LZW.csv")
+    LZW("./dataset\\jquery-3.6.0.js","./resultados\\jquery-3.6.0_LZW.bin","./decompress\\decoder_jquery-3.6.0_LZW.js")
+    LZW("./dataset\\random.txt","./resultados\\random_LZW.bin","./decompress\\decoder_random_LZW.txt")
     
-entrada = open( "./resultados\\random_BWT.txt", "r").read()
-saida = open("./resultados\\random_BWT_LZW.bin", "wb")
-comprimido = compressao(entrada)
-pickle.dump(comprimido, saida)
+# entrada = open( "./resultados\\random_BWT.txt", "r").read()
+# saida = open("./resultados\\random_BWT_LZW.bin", "wb")
+# comprimido = compressao(entrada)
+# pickle.dump(comprimido, saida)
