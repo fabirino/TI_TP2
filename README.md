@@ -1,6 +1,6 @@
 ## Compressão (e descompressão) Lossless de ficheiros de texto
 
-O código é constituído por um ficheiro main.py e vários ficheiros auxiliares, cada um deles contendo as funções de um método de compressão ou de codificação. De notar que os ficheiros auxiliares contêm código de outros autores adaptado por nós. Ao correr o ficheiro main, o utilizador depara-se com uma interface na consola onde pode escolher o método de compressão que pretende utilizar. O programa chama então as funções de compressão e de descompressão do ficheiro do método correspondente e no final é mostrado o tempo de compressão de cada ficheiro bem como o tamanho do ficheiro final e o rácio de compressão. Os ficheiros originais são lidos da pasta “./dataset” enquanto os ficheiros comprimidos são guardados na pasta”./resultados” e as descodificações na pasta “./decompress”. 
+O código é constituído por um ficheiro main.py e vários ficheiros auxiliares, cada um deles contendo as funções de um método de compressão ou de codificação. De notar que os ***ficheiros auxiliares contêm código de outros autores*** adaptado por nós. Ao correr o ficheiro main, o utilizador depara-se com uma interface na consola onde pode escolher o método de compressão que pretende utilizar. O programa chama então as funções de compressão e de descompressão do ficheiro do método correspondente e no final é mostrado o tempo de compressão de cada ficheiro bem como o tamanho do ficheiro final e o rácio de compressão.
 
 ## Estrutura do projeto
 
