@@ -2,6 +2,7 @@
 
 import pickle
 import string
+import time
 
 def move2front_encode(infile, outfile):
     strng = open(infile, "r").read()
@@ -28,15 +29,28 @@ def move2front_decode(infile, outfile):
     return ''.join(chars)
 
 def MTF(file,encodefile,decodefile):
+    print(f"Comprimindo \'{file}\'...")
+    tempo = time.time()
     move2front_encode(file, encodefile)
+    tempo = time.time() - tempo
+    print(f"Tempo de compressao -> {round(tempo, 4)} segundos")
     print(f"Ficheiro \'{file}\' comprimido com MTF")
+
+    print(f"Descomprimindo \'{encodefile}\'...")
+    tempo2 = time.time()
     move2front_decode(encodefile, decodefile)
+    tempo2 = time.time() - tempo2
+    print(f"Tempo de compressao -> {round(tempo2, 4)} segundos")
     print(f"Ficheiro \'{encodefile}\' descomprimido com MTF")
 
 def allMTF():
     MTF("./dataset\\bible.txt", "./resultados\\bible_MTF.bin","./decompress\\decoder_bible_MTF.txt")
+    print("----------------------------------------------------------------")
     MTF("./dataset\\finance.csv", "./resultados\\finance_MTF.bin","./decompress\\decoder_finance_MTF.txt")
+    print("----------------------------------------------------------------")
     MTF("./dataset\\jquery-3.6.0.js", "./resultados\\jquery-3.6.0_MTF.bin","./decompress\\decoder_jquery-3.6.0_MTF.txt")
+    print("----------------------------------------------------------------")
     MTF("./dataset\\random.txt", "./resultados\\random_MTF.bin","./decompress\\decoder_random_MTF.txt")
-
+    print("----------------------------------------------------------------")
+    print()
 # move2front_encode("./dataset\\bible.txt", "./resultados\\bible_MTF.bin")

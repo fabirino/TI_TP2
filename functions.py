@@ -2,6 +2,7 @@ import numpy as np
 from operator import itemgetter
 from decimal import Decimal
 import bz2
+import time
 
 '''ENTROPIA'''
 
@@ -76,7 +77,6 @@ def decodeLZ(FileIn, FileOut):
     coded_file.close()
     decoded_file.close()
 
-# PPM ======================================================================
 
 
 # Codigos Aritmeticos ======================================================
@@ -398,45 +398,84 @@ def bin2float(bin_num):
 '''lEITURA E ESCRITA DE NOVOS FICHEIROS'''
 
 def decoderBZIP2(filename,fileout):
+    tempo = time.time()
     with open(fileout, 'w') as f:
         bintoStr = str(bz2.open(filename,'r').read())[2:-1]
         spl = bintoStr.split("\\n")
         f.write("\n".join(spl).replace("\t"," "))
-    return
+    tempo =  time.time()-tempo 
+    print(f"Tempo de descompressao -> {round(tempo, 4)} segundos")
 
 def BZIP2():
+    tempo11 = time.time()
+    print("Comprimindo \'bible.txt\'...")
     with open("./dataset\\bible.txt", 'r') as bible, open("./resultados\\bible_BZ2.bin", "wb") as bible_bz2:
         texto1 = bible.read()
-        print("Ficheiro \'bible.txt\' comprimido com BZIP")
         compress = bz2.compress(texto1.encode('ascii'), compresslevel=9)
         bible_bz2.write(bytes(compress))
-    print("Ficheiro \'bible_BZ2.bin\' descomprimido com BZIP")
+    tempo11 =  time.time()-tempo11 
+    print(f"Tempo de compressao -> {round(tempo11, 4)} segundos")
+    print("Ficheiro \'bible.txt\' comprimido com BZIP")
+    print("Descomprimindo \'bible_BZ2.bin\'...")
+    tempo12 = time.time()
     decoderBZIP2("./resultados\\bible_bz2.bin","./decompress\\decoder_bible_bz2.txt")
+    tempo12 =  time.time()-tempo12
+    print(f"Tempo de descompressao -> {round(tempo12, 4)} segundos")
+    print("Ficheiro \'bible_BZ2.bin\' descomprimido com BZIP")
+    print("----------------------------------------------------------------")
 
+    tempo21 = time.time()
+    print("Comprimindo \'finance.csv\'...")
     with open("./dataset\\finance.csv" , 'r') as finance, open("./resultados\\finance_BZ2.bin", "wb") as finance_bz2:
         texto2 = finance.read()
-        print("Ficheiro \'finance.csv\' comprimido com BZIP")
         compress_finance = bz2.compress(texto2.encode('ascii'), compresslevel=9)
         finance_bz2.write(bytes(compress_finance))
-    print("Ficheiro \'finance_BZ2.bin\' descomprimido com BZIP")
+    tempo21 =  time.time()-tempo21 
+    print(f"Tempo de compressao -> {round(tempo21, 4)} segundos")
+    print("Ficheiro \'finance.csv\' comprimido com BZIP")
+    print("Descomprimindo \'finance_BZ2.bin\'...")
+    tempo22 = time.time()
     decoderBZIP2("./resultados\\finance_bz2.bin","./decompress\\decoder_finance_bz2.csv")
+    tempo22 =  time.time()-tempo22 
+    print(f"Tempo de descompressao -> {round(tempo22, 4)} segundos")
+    print("Ficheiro \'finance_BZ2.bin\' descomprimido com BZIP")
+    print("----------------------------------------------------------------")
 
+    tempo31 = time.time()
+    print("Comprimindo \'random.txt\'...")
     with open("./dataset\\random.txt", 'r') as random, open("./resultados\\random_bz2.bin", 'wb') as random_bz2:
         texto3 = random.read()
-        print("Ficheiro \'random.txt\' comprimido com BZIP")
         compress_random = bz2.compress(texto3.encode('ascii'), compresslevel=9)
         random_bz2.write(bytes(compress_random))
-    print("Ficheiro \'random_bz2.bin\' descomprimido com BZIP")
+    tempo31= time.time() - tempo31
+    print(f"Tempo de compressao -> {round(tempo31, 4)} segundos")
+    print("Ficheiro \'random.txt\' comprimido com BZIP")
+    print("Descomprimindo \'random_bz2.bin\'...")
+    tempo32 = time.time()
     decoderBZIP2("./resultados\\random_bz2.bin","./decompress\\decoder_random_bz2.txt")
+    tempo32 = time.time() - tempo32
+    print(f"Tempo de descompressao -> {round(tempo32, 4)} segundos")
+    print("Ficheiro \'random_bz2.bin\' descomprimido com BZIP")
+    print("----------------------------------------------------------------")
 
+    tempo41 = time.time()
+    print("Comprimindo \'jquery-3.6.0.js\'...")
     with open("./dataset\\jquery-3.6.0.js", 'r') as jquery, open("./resultados\\jquery_bz2.bin", 'wb') as jquery_bz2:
         texto4 = jquery.read()
-        print("Ficheiro \'jquery-3.6.0.js\' descomprimido com BZIP")
         compress_jquery =bz2.compress(texto4.encode('ascii'), compresslevel=9)
         jquery_bz2.write(bytes(compress_jquery))
-    print("Ficheiro \'jquery_bz2.bin\' descomprimido com BZIP")
+    tempo41 = time.time() - tempo41
+    print(f"Tempo de compressao -> {round(tempo41, 4)} segundos")
+    print("Ficheiro \'jquery-3.6.0.js\'  comprimido com BZIP")
+    print("Descomprimindo \'jquery_bz2.bin\'...")
+    tempo42 = time.time()
     decoderBZIP2("./resultados\\jquery_bz2.bin","./decompress\\decoder_jquery_bz2.js")
-
+    tempo42 = time.time() - tempo42
+    print(f"Tempo de descompressao -> {round(tempo42, 4)} segundos")
+    print("Ficheiro \'jquery_bz2.bin\' descomprimido com BZIP")
+    print("----------------------------------------------------------------")
+    print()
+    
 def encoderFile(infile,outfile):
     with open(infile,"rb") as lz,open(outfile, 'wb') as bzip:
         ti = lz.read()

@@ -18,3 +18,9 @@ Fora destas pastas encontram-se os ficheiros "*.py" :
 - `main.py`: ficheiro que contém a aplicação proprimante dita, onde é possivel escolher que metodo(s) de compressão se pretendem aplicar
 - `RESTANTES`: ficheiros auxilares que contém o código de leitura, escrita, compressão e descompressão segundo o método correspondente a esse ficheiro.
 
+### IMPORTANTE
+
+Para correr o código do PPM é necessário instalar uma biblioteca que permite este tipo de codificação
+Para isso corre o seguinte programa no terminal
+
+- pip install ppmd-cffi

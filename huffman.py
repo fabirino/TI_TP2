@@ -1,6 +1,6 @@
 import heapq
 import pickle
-
+import time
 """
 author: Bhrigu Srivastava
 website: https:bhrigu.me
@@ -105,7 +105,6 @@ class HuffmanCoding:
         return b
 
     def compress(self):
-
         with open(self.file, 'r+') as file, open(self.infile, 'wb') as output:
             text = file.read()
             text = text.rstrip()
@@ -124,7 +123,6 @@ class HuffmanCoding:
             pickle.dump(self.reverse_mapping, a_file)
 
             a_file.close()
-
     """ functions for decompression: """
 
     def remove_padding(self, padded_encoded_text):
@@ -170,35 +168,37 @@ class HuffmanCoding:
 
             output.write(decompressed_text)
 
+def HuffmanFile(file,infile, outfile,dicfile):
+    x = HuffmanCoding(file,infile, outfile,dicfile)
+    print(f"Comprimindo \'{file}\'...")
+    tempo = time.time()
+    x.compress()
+    tempo =  time.time()-tempo 
+    print(f"Tempo de compressao -> {round(tempo, 4)} segundos")
+    print(f"Descomprimindo \'{infile}\'...")
+    tempo2 = time.time()
+    x.decompress()
+    tempo2 = time.time() - tempo2
+    print(f"Tempo de descompressao -> {round(tempo2, 4)} segundos")
+
+
+
 
 def Huffman():
-    bible = HuffmanCoding("./dataset\\bible.txt","./resultados\\bible_Huff.bin","./decompress\\decoder_bible_Huff.txt","./dicionarios\\bible_Huff.bin")
-    bible.compress()
-    print("Ficheiro \'bible.txt\' comprimido com Huffman")
-    bible.decompress()
-    print("Ficheiro \'bible_Huff.bin\' descomprimido com Huffman")
-    finance = HuffmanCoding("./dataset\\finance.csv","./resultados\\finance_Huff.bin","./decompress\\decoder_finance_Huff.txt","./dicionarios\\finance_Huff.bin")
-    finance.compress()
-    print("Ficheiro \'finance.csv\' comprimido com Huffman")
-    finance.decompress()
-    print("Ficheiro \'finance_Huff.bin\' descomprimido com Huffman")
-    jquery = HuffmanCoding("./dataset\\jquery-3.6.0.js","./resultados\\jquery-3.6.0_Huff.bin","./decompress\\decoder_jquery-3.6.0_Huff.txt","./dicionarios\\jquery-3.6.0_Huff.bin")
-    jquery.compress()
-    print("Ficheiro \'jquery-3.6.0.js\' comprimido com Huffman")
-    jquery.decompress()
-    print("Ficheiro \'jquery-3.6.0_Huff.bin\' descomprimido com Huffman")
-    random = HuffmanCoding("./dataset\\random.txt","./resultados\\random_Huff.bin","./decompress\\decoder_random_Huff.txt","./dicionarios\\random_Huff.bin")
-    random.compress()
-    print("Ficheiro \'random.txt\' comprimido com Huffman")
-    random.decompress()
-    print("Ficheiro \'random_Huff.bin\' descomprimido com Huffman")
+    HuffmanFile("./dataset\\bible.txt","./resultados\\bible_Huff.bin","./decompress\\decoder_bible_Huff.txt","./dicionarios\\bible_Huff.bin")
+    print("----------------------------------------------------------------")
 
-# def Huffmanencode(file,outfile,dicfile):
-#     x = HuffmanCoding(file,outfile,"",dicfile)
-#     x.compress()
-#     print("Ficheiro \'{file}\' comprimido com Huffman")
+    HuffmanFile("./dataset\\finance.csv","./resultados\\finance_Huff.bin","./decompress\\decoder_finance_Huff.txt","./dicionarios\\finance_Huff.bin")
+    print("----------------------------------------------------------------")
 
-# def Huffmandecode(file,outfile,dicfile):
-#     x = HuffmanCoding(file,"",outfile,dicfile)
-#     x.decompress()
-#     print("Ficheiro \'{file}\' descomprimido com Huffman")
+    HuffmanFile("./dataset\\jquery-3.6.0.js","./resultados\\jquery-3.6.0_Huff.bin","./decompress\\decoder_jquery-3.6.0_Huff.txt","./dicionarios\\jquery-3.6.0_Huff.bin")
+    print("----------------------------------------------------------------")
+
+    HuffmanFile("./dataset\\random.txt","./resultados\\random_Huff.bin","./decompress\\decoder_random_Huff.txt","./dicionarios\\random_Huff.bin")
+    print("----------------------------------------------------------------")
+    print()
+
+def HuffmanEncode(file,outfile,dicfile):
+    x = HuffmanCoding(file,outfile,"",dicfile)
+    x.compress()
+    print(f"Ficheiro \'{file}\' comprimido com Huffman")

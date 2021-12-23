@@ -2,6 +2,9 @@
 
 # rle-encode.py
 
+import time
+
+
 def rle_encode(infile,outfile):
     data = open(infile, "r").read()
     encoding = ''
@@ -51,16 +54,41 @@ def rle_decode(infile,outfile):
 
 
 def allRLE():
+    print("Comprimindo \'bible.txt\'...")
+    tempo =time.time()
     rle_encode("./dataset\\bible.txt", "./resultados\\bible_RLE.bin")
-    print(f"Ficheiro \'bible.txt\' comprimido com RLE")
+    tempo = time.time() - tempo
+    print(f"Tempo de compressao -> {round(tempo, 4)} segundos")
+    print("Ficheiro \'bible.txt\' comprimido com RLE")
+    print("Descomprimindo \'bible.txt\'...")
+    tempo2 = time.time()
     rle_decode("./resultados\\bible_RLE.bin","./decompress\\decoder_bible_RLE.txt")
-    print(f"Ficheiro \'bible_RLE.bin\' descomprimido com RLE")
+    tempo2 = time.time() - tempo2
+    print(f"Tempo de compressao -> {round(tempo2, 4)} segundos")
+    print("Ficheiro \'bible_RLE.bin\' descomprimido com RLE")
+    print("----------------------------------------------------------------")
 
+    print("Comprimindo \'finance.csv\'...")
+    tempo = time.time()
     rle_encode("./dataset\\finance.csv", "./resultados\\finance_RLE.bin")
-    print(f"Ficheiro \'finance.csv\' comprimido com RLE")
+    tempo = time.time() - tempo
+    print(f"Tempo de compressao -> {round(tempo, 4)} segundos")
+    print("Ficheiro \'finance.csv\' comprimido com RLE")
+    print("----------------------------------------------------------------")
 
+    print("Comprimindo \'jquery-3.6.0.js\'...")
+    tempo =time.time()
     rle_encode("./dataset\\jquery-3.6.0.js", "./resultados\\jquery-3.6.0_RLE.bin")
-    print(f"Ficheiro \'jquery-3.6.0.js\' comprimido com RLE")
+    tempo = time.time() - tempo
+    print(f"Tempo de compressao -> {round(tempo, 4)} segundos")
+    print("Ficheiro \'jquery-3.6.0.js\' comprimido com RLE")
+    print("----------------------------------------------------------------")
 
+    print("Comprimindo\'random.txt\'...")
+    tempo =time.time()
     rle_encode("./dataset\\random.txt", "./resultados\\random_RLE.bin")
-    print(f"Ficheiro \'random.txt\' comprimido com RLE")
+    tempo = time.time() - tempo
+    print(f"Tempo de compressao -> {round(tempo, 4)} segundos")
+    print("Ficheiro \'random.txt\' comprimido com RLE")
+    print("----------------------------------------------------------------")
+    print()
